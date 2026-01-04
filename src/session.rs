@@ -9,7 +9,7 @@ use tokio::sync::Notify;
 use uuid::Uuid;
 
 #[derive(Clone)]
-struct Session {
+pub struct Session {
     id: String,
     user: String,
     target: String,
@@ -19,7 +19,7 @@ struct Session {
 }
 
 impl Session {
-    fn new(user: String, target: String) -> Self {
+    pub fn new(user: String, target: String) -> Self {
         let now = now_ts();
         Self {
             id: Uuid::new_v4().to_string(),
@@ -31,12 +31,12 @@ impl Session {
         }
     }
 
-    fn touch(&self) {
+    pub fn touch(&self) {
         self.last_active_at.store(now_ts(), Ordering::Relaxed);
     }
 }
 
-fn now_ts() -> i64 {
+pub fn now_ts() -> i64 {
     SystemTime::now()
         .duration_since(UNIX_EPOCH)
         .unwrap()

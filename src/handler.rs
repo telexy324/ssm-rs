@@ -1,8 +1,9 @@
 use async_trait::async_trait;
 use russh::{Channel, ChannelId};
 use russh::server::{Auth, Handle, Session as SshSession};
+use crate::session::{Session};
 
-struct JumpServer {
+pub struct JumpServer {
     session: Session,
 }
 

@@ -1,9 +1,9 @@
 use tokio::time::{sleep, Duration};
-
+use crate::session::{Session, now_ts};
 const IDLE_TIMEOUT: i64 = 600;     // 10 min
 const MAX_SESSION_TIME: i64 = 7200; // 2 hours
 
-async fn monitor_session(sess: Session) {
+pub async fn monitor_session(sess: Session) {
     loop {
         tokio::select! {
             _ = sleep(Duration::from_secs(30)) => {

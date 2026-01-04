@@ -2,6 +2,7 @@ use russh::client::{self, Config};
 use russh_keys::key;
 use std::net::SocketAddr;
 use std::sync::Arc;
+use crate::session::{Session};
 
 async fn connect_target(target: &str) -> anyhow::Result<client::Handle> {
     let key = russh_keys::load_secret_key(
